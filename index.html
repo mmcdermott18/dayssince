@@ -10,13 +10,14 @@
         <style type="text/css">
             * {font-family: 'Fira Sans', sans-serif; margin: 0; color: white;}
             body {background-color: black;}
-            #container {width: 100vw; height: 100vh}
-            #countup {width: 100vw; text-align: center}
-            #archive {width: 100vw; position: relative; top: 0; text-align: center; font-weight: 300; font-size: 12px; text-transform: uppercase;z-index: 0}
-            #archive a{color: #333;}
+            #container {width: 100vw; height: 100vh; z-index: -1}
+            #countup {width: 100vw; text-align: center; z-index: 2}
+            #countup p {line-height: 5vw}
+            #archive {width: 100vw; position: absolute; top: 0; padding: 10px; text-align: center; font-weight: 300; font-size: 10px; text-transform: uppercase; z-index: 0; display: none;}
+            #archive a{color: white; white-space: nowrap;}
             #archive a:hover {color: red;}
-            .numbers {font-family: 'Fira Mono', monospace; font-size: 5vw; font-weight: 700; padding: 0 5px}
-            .metric {font-size: 3vw; font-weight: 300; text-transform: uppercase}
+            .numbers {font-family: 'Fira Mono', monospace; font-size: 5vw; font-weight: 700; padding: 0 0 0 10px}
+            .metric {font-size: 3vw; font-weight: 300; text-transform: uppercase; visibility: hidden;}
             a {text-decoration: none;}
             a:hover {color: red;}
         </style>
@@ -30,25 +31,34 @@
         <div id="container">
             <div id="countup">
               <p>
-                  <span class="metric">It's been</span>
-                  <span class="numbers" id="days">00</span>
-                  <span class="timeRefDays metric">days</span>
-                  <span class="numbers" id="hours">00</span>
-                  <span class="timeRefHours metric">hours</span>
-                  <span class="numbers" id="minutes">00</span>
-                  <span class="timeRefMinutes metric">minutes</span>
-                  <span class="numbers" id="seconds">00</span>
-                  <span class="timeRefSeconds metric">seconds</span>
+                <span class="metric">It's been</span>
+                <span class="numbers" id="days">00</span>
+                <span class="timeRefDays metric">days</span>
+                <span class="numbers" id="hours">00</span>
+                <span class="timeRefHours metric">hours</span>
+                <span class="numbers" id="minutes">00</span>
+                <span class="timeRefMinutes metric">minutes</span>
+                <span class="numbers" id="seconds">00</span>
+                <span class="timeRefSeconds metric">seconds</span>
               </p>
-              <p class="metric">since <a href="http://www.hesstonrecord.com/current-news/breaking-news-shooter-at-excel-plant-confirmed-deaths/">Hesston, Kansas</a></p>
+              <!-- <p>
+                <span class="metric">since</span>
+                <span class="numbers">4</span>
+                <span class="metric">people were killed &amp;</span>
+                <span class="numbers">14</span>
+                <span class="metric">people were injured</span>
+              </p>  -->
+              <p class="metric">in <a href="http://www.hesstonrecord.com/current-news/breaking-news-shooter-at-excel-plant-confirmed-deaths/">Hesston, Kansas</a></p>
             </div>
             <div id="archive">
-              <p class="archive"><a href="http://www.mlive.com/news/kalamazoo/index.ssf/2016/02/kalamazoo_michigan_mass_murder.html">Kalamazoo, Michigan | 02.22.2016</a></p>
-              <p class="archive"><a href="https://www.washingtonpost.com/news/post-nation/wp/2015/12/02/police-in-san-bernadino-calif-responding-report-of-shooting/">San Bernardino, California | 12.02.2015</a></p>
-              <p class="archive"><a href="https://www.washingtonpost.com/world/national-security/2015/11/27/ff579e40-9543-11e5-b5e4-279b4501e8a6_story.html">Colorado Sprints, Colorado | 11.27.2015</a></p>
-              <p class="archive"><a href="http://www.cnn.com/2015/10/01/us/oregon-college-shooting/index.html">Roseburg, Oregon | 10.01.2015</a></p>
-              <p class="archive"><a href="http://www.latimes.com/nation/la-na-louisiana-movie-theater-shooting-20150724-story.html">Lafayette, Louisiana | 07.23.2015</a></p>
-              <p class="archive"><a href="http://www.nytimes.com/2015/06/18/us/the-charleston-shooting-what-happened.html">Charleston, South Carolina | 06.17.2015</a></p>
+              <p class="archive">
+                <a href="http://www.mlive.com/news/kalamazoo/index.ssf/2016/02/kalamazoo_michigan_mass_murder.html">Kalamazoo, Michigan 02.22.2016</a>&emsp;
+                <a href="https://www.washingtonpost.com/news/post-nation/wp/2015/12/02/police-in-san-bernadino-calif-responding-report-of-shooting/">San Bernardino, California 12.02.2015</a>&emsp;
+                <a href="https://www.washingtonpost.com/world/national-security/2015/11/27/ff579e40-9543-11e5-b5e4-279b4501e8a6_story.html">Colorado Springs, Colorado 11.27.2015</a>&emsp;
+                <a href="http://www.cnn.com/2015/10/01/us/oregon-college-shooting/index.html">Roseburg, Oregon 10.01.2015</a>&emsp;
+                <a href="http://www.latimes.com/nation/la-na-louisiana-movie-theater-shooting-20150724-story.html">Lafayette, Louisiana 07.23.2015</a>&emsp;
+                <a href="http://www.nytimes.com/2015/06/18/us/the-charleston-shooting-what-happened.html">Charleston, South Carolina 06.17.2015</a>&emsp;
+              </p>
             </div>
         </div>
 
@@ -109,6 +119,12 @@
               clearTimeout(upTime.to);
               upTime.to=setTimeout(function(){ upTime(countTo); },1000);
             }
+        </script>
+        <script>
+          $(document).ready(function(){
+            $('#archive').fadeIn(30000);
+            $('.metric').css('visibility','visible').hide().fadeIn(20000);
+          });
         </script>
     </body>
 </html>
